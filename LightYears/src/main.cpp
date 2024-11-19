@@ -1,8 +1,12 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include <memory>
+#include "framework/Application.h"
 
 int main()
 {
-	sf::RenderWindow oRenderWindow{ sf::VideoMode(500,500), "Window" };
+	std::unique_ptr< FromHeLL::Application > App = std::make_unique< FromHeLL::Application >(500, 700, "Light Years 3000");
+	App->Run();
+	
+	App.release();
 	return 0;
 }
