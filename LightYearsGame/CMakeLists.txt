@@ -2,6 +2,7 @@
 # add_subdirectory(LightYearsGame) in the CMakeList under LightYears3000 is responsible to this CMakeLists being seen.
 
 add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
+               ${CMAKE_CURRENT_SOURCE_DIR}/include/gameFramework/GameApplication.h
                ${CMAKE_CURRENT_SOURCE_DIR}/src/gameFramework/GameApplication.cpp
 )
 
@@ -26,6 +27,41 @@ add_custom_command(
 endfunction()
 
 CopyLibDirToTarget( ${LIGHT_YEARS_ENGINE_TARGET_NAME} ${LIGHT_YEARS_GAME_TARGET_NAME})
+
+set(RESOURCE_FOLDER_NAME "assets")
+set(RESOURCE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCE_FOLDER_NAME}")
+
+add_custom_command(
+    TARGET ${LIGHT_YEARS_GAME_TARGET_NAME}
+    POST_BUILD 
+    COMMAND ${CMAKE_COMMAND}
+    ARGS -E copy_directory
+    ${RESOURCE_SRC_DIR}
+    $<TARGET_FILE_DIR:${LIGHT_YEARS_GAME_TARGET_NAME}>/${RESOURCE_FOLDER_NAME}
+
+)
+
+
+
+configure_file(
+    "Config.h.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/Config.h" ESCAPE_QUOTES
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # add custom command exemple

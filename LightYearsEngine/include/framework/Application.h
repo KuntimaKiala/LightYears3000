@@ -1,37 +1,53 @@
 #pragma once 
 
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include "framework/Core.h"
+
 
 namespace FromHeLL
 {
+	class World;
 	class Application
 	{
 		public: 
 			Application();
-			Application(int iWidth, int iHeight, const std::string& sWindowName, float fFrameRate = 60.0f);
-			~Application();
-
+			Application(int iWidth, int iHeight, const std::string& sWindowName, sf::Uint32 uStyle, float fFrameRate = 60.0f);
+			virtual ~Application();
+			virtual void Tick(float fDeltaTime) ;
 			void Run();
+
+			template <typename WorldType>
+			weak< WorldType> Loadworld();
 
 	private :
 
-		virtual void _Tick(float fDeltaTime) const;
-		void _TickInternal(float fDeltaTime) const;
+		
+		void TickInternal(float fDeltaTime) ;
 
-		virtual void _Render();
-		void _RenderInternal();
+		virtual void Render();
+		void RenderInternal();
 		
 		
 		int m_iWidth;
 		int m_iHeight;
 		sf::RenderWindow m_oWindow;
+
 		float m_fTargetFPS;
 		sf::Clock m_oClock;
 		
-		
+		shared<World> m_spCurrentWorld;
 	
 	protected :
 		
 	};
+
+
+	template <typename WorldType>
+	weak< WorldType> Application::Loadworld()
+	{
+		shared<WorldType> spNewWorld{ new WorldType{this} };
+		m_spCurrentWorld = spNewWorld;
+		m_spCurrentWorld->BeginPlayInternal();
+		return spNewWorld;
+	}
 }

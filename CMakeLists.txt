@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.22.0 ) # 3.22.0 minimun required to rn SFML
+cmake_minimum_required( VERSION 3.22.0 ) # 3.22.0 minimun required to make SFML work
 
 project(LightYears 
         VERSION 1.0.0
