@@ -13,8 +13,9 @@ namespace FromHeLL
 		, m_oSprite{}
 		, m_spTexture{}
 	{
+		
+		//SetTexture(sTexturePath);
 		LOG("Actor Created");
-		SetTexture(sTexturePath);
 		
 	}
 	Actor::~Actor()
