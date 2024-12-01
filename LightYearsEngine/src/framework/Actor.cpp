@@ -1,16 +1,20 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
+#include "framework/AssetManager.h"
 
 namespace FromHeLL
 {
 
 	Actor::Actor(World* oOwningWorld, const String& sTexturePath)
-		: m_oOwningWorld(oOwningWorld)
+		: Object() // Not needed since it empty constructer, it will called first regardless
+		, m_oOwningWorld(oOwningWorld)
 		, m_bHasBaganPlay(false)
 		, m_oSprite{}
-		, m_oTexture{}
+		, m_spTexture{}
 	{
+		LOG("Actor Created");
 		SetTexture(sTexturePath);
+		
 	}
 	Actor::~Actor()
 	{
@@ -28,11 +32,13 @@ namespace FromHeLL
 
 	void Actor::SetTexture( const String& sTexturePath )
 	{
-		m_oTexture.loadFromFile( sTexturePath );
-		m_oSprite.setTexture( m_oTexture );
+		shared <sf::Texture> oTexture = AssetManager::GetAssetManager().LoadTexture( sTexturePath );
+		if (!oTexture) return;
 
-		int textureWidth  = m_oTexture.getSize().x;
-		int textureHeight = m_oTexture.getSize().y;
+		m_oSprite.setTexture( *oTexture );
+
+		int textureWidth  = oTexture->getSize().x;
+		int textureHeight = oTexture->getSize().y;
 
 		m_oSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
 	}
@@ -54,11 +60,11 @@ namespace FromHeLL
 
 	void Actor::BeginPlay()
 	{
-		LOG("Actor Begin Play");
+		
 	}
 
 	void Actor::Tick(float fDeltatime)
 	{
-		LOG("Actor Ticking");
+		
 	}
 }

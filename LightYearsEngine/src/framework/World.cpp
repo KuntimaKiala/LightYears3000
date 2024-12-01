@@ -70,7 +70,7 @@ namespace FromHeLL
 
 	void World::Tick(float deltaTime)
 	{
-		LOG("Tick Tock :  %f", 1 / deltaTime);
+
 	}
 
 }

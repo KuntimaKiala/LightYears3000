@@ -36,6 +36,8 @@ namespace FromHeLL
 		sf::Clock m_oClock;
 		
 		shared<World> m_spCurrentWorld;
+		float m_fCleanCycleInterval;
+		sf::Clock m_oCleanCycleClock;
 	
 	protected :
 		

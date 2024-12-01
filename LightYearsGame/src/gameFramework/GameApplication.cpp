@@ -26,10 +26,10 @@ namespace FromHeLL
 	
 		//fTimer = 0.0f;
 		weak<World> oNewWorld =  Loadworld<World>();
-		oNewWorld.lock()->SpawnActor<Actor>();
+		//oNewWorld.lock()->SpawnActor<Actor>();
 		pActor = oNewWorld.lock()->SpawnActor<Actor>();
 		
-		pActor.lock()->SetTexture( GetResourceDir() + "/SpaceShooterRedux/PNG/playerShip2_red.png");
+		pActor.lock()->SetTexture( GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png");
 		}
 
 

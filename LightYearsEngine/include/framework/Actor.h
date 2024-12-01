@@ -22,7 +22,7 @@ namespace FromHeLL
 			World* m_oOwningWorld;
 			bool m_bHasBaganPlay;
 			sf::Sprite m_oSprite;
-			sf::Texture m_oTexture;
+			shared<sf::Texture> m_spTexture;
 			
 	};
 

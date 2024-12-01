@@ -1,6 +1,7 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
 #include "framework/World.h"
+#include "framework/AssetManager.h"
 
 namespace FromHeLL
 {
@@ -11,8 +12,10 @@ namespace FromHeLL
 		, m_fTargetFPS{60.0f}
 		, m_oClock{}
 		, m_spCurrentWorld{ nullptr }
+		, m_fCleanCycleInterval{2.0f}
+		, m_oCleanCycleClock{}
 	{
-
+		LOG("Application Created");
 	}
 
 	Application::Application(int iWidth, int iHeight, const std::string& sWindowName, sf::Uint32 uStyle, float fFrameRate)
@@ -22,14 +25,16 @@ namespace FromHeLL
 		, m_fTargetFPS{ fFrameRate }
 		, m_oClock{}
 		, m_spCurrentWorld{nullptr}
+		, m_fCleanCycleInterval{ 2.0f }
+		, m_oCleanCycleClock{}
 	
 	{
-
+		LOG("Application Created");
 	}
 
 	Application::~Application()
 	{
-
+		LOG("Application Destroyed");
 	}
 
 	void Application::Tick(float fDeltaTime)
@@ -80,6 +85,11 @@ namespace FromHeLL
 			//m_spCurrentWorld->BeginPlayInternal(); called from  weak< WorldType> Application::Loadworld() check header file
 			m_spCurrentWorld->TickInternal(fDeltaTime);
 		}
+		if (m_oCleanCycleClock.getElapsedTime().asSeconds() >= m_fCleanCycleInterval)
+		{
+			m_oCleanCycleClock.restart();
+			AssetManager::GetAssetManager().CleanCycle() ;
+		}
 	}
 	void Application::RenderInternal() 
 	{
@@ -89,6 +99,8 @@ namespace FromHeLL
 
 		m_oWindow.display();
 	}
+
+
 
 	void Application::Render()
 	{
