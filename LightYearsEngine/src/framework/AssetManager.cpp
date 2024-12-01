@@ -50,7 +50,7 @@ namespace FromHeLL
 		for (auto pIter = m_dLoadedTextureMap.begin(); pIter != m_dLoadedTextureMap.end(); )
 		{
 			// if no one is holding the share pointer other than the m_dLoadedTextureMap
-			if (pIter->second.unique())
+			if ( pIter->second.unique() )
 			{
 				LOG("Cleaning Texture : %s", pIter->first.c_str());
 				pIter = m_dLoadedTextureMap.erase(pIter);

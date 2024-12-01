@@ -85,7 +85,7 @@ namespace FromHeLL
 			//m_spCurrentWorld->BeginPlayInternal(); called from  weak< WorldType> Application::Loadworld() check header file
 			m_spCurrentWorld->TickInternal(fDeltaTime);
 		}
-		if (m_oCleanCycleClock.getElapsedTime().asSeconds() >= m_fCleanCycleInterval)
+		if ( m_oCleanCycleClock.getElapsedTime().asSeconds() >= m_fCleanCycleInterval )
 		{
 			m_oCleanCycleClock.restart();
 			AssetManager::GetAssetManager().CleanCycle() ;

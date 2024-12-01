@@ -24,30 +24,35 @@ namespace FromHeLL
 		: Application(iWidth, iHeight, sWindowName, uStyle , fFrameRate)
 	{
 	
-		//fTimer = 0.0f;
+		fTimer = 0.0f;
 		weak<World> oNewWorld =  Loadworld<World>();
-		//oNewWorld.lock()->SpawnActor<Actor>();
-		pActor = oNewWorld.lock()->SpawnActor<Actor>();
 		
-		pActor.lock()->SetTexture( GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png");
+		
+		pActor = oNewWorld.lock()->SpawnActor<Actor>();
+		pActor.lock()->SetTexture( GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png" );
+		pActor.lock()->SetActorLocation( sf::Vector2f( iWidth/2.0f, iHeight/2.0f )) ;
+		pActor.lock()->SetActorRotation( 45.0f );
+		
+		
+		LOG("GameApplication Created");
 		}
 
 
 	GameApplication::~GameApplication()
 	{
-
+		LOG("GameApplication Destroyed");
 	}
 
 	void GameApplication::Tick(float fDeltaTime) 
 	{
-		fTimer += fDeltaTime;
+		/*fTimer += fDeltaTime;
 		if (fTimer > 2.0f)
 		{
 			if (!pActor.expired())
 			{
 				pActor.lock()->Destroy();
 			}
-		}
+		}*/
 	}
 	
 }

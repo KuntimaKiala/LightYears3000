@@ -12,11 +12,12 @@ namespace FromHeLL
 		,m_aPendingActors{}
 
 	{
+		LOG("World Created");
 	}
 
 	World::~World()
 	{
-
+		LOG("World Destroyed");
 	}
 	void World::BeginPlayInternal()
 	{
@@ -33,9 +34,9 @@ namespace FromHeLL
 	}
 
 
-	void World::TickInternal(float deltaTime)
+	void World::TickInternal( float deltaTime )
 	{
-		for (shared<Actor> actor : m_aPendingActors)
+		for ( shared<Actor> actor : m_aPendingActors )
 		{
 			m_aActors.push_back( actor );
 			actor->BeginPlayInternal();
@@ -60,11 +61,11 @@ namespace FromHeLL
 		Tick(deltaTime);
 	}
 
-	void World::Render(sf::RenderWindow& oWindow)
+	void World::Render( sf::RenderWindow& oWindow )
 	{
 		for(auto& actor : m_aActors )
 		{
-			actor->Render(oWindow);
+			actor->Render( oWindow );
 		}
 	}
 

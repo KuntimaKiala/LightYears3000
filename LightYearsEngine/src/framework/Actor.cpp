@@ -1,6 +1,7 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
+#include "framework/MathUtility.h" 
 
 namespace FromHeLL
 {
@@ -21,6 +22,12 @@ namespace FromHeLL
 		LOG("Actor Destroyed");
 	}
 
+	void Actor::CenterPivot()
+	{
+		sf::FloatRect oBound = m_oSprite.getGlobalBounds();
+		m_oSprite.setOrigin( oBound.width/2, oBound.height/2 );
+	}
+
 	void Actor::BeginPlayInternal()
 	{
 		if (!m_bHasBaganPlay)
@@ -32,15 +39,56 @@ namespace FromHeLL
 
 	void Actor::SetTexture( const String& sTexturePath )
 	{
-		shared <sf::Texture> oTexture = AssetManager::GetAssetManager().LoadTexture( sTexturePath );
-		if (!oTexture) return;
+		m_spTexture = AssetManager::GetAssetManager().LoadTexture( sTexturePath );
+		if (!m_spTexture) return;
 
-		m_oSprite.setTexture( *oTexture );
+		m_oSprite.setTexture( *m_spTexture);
 
-		int textureWidth  = oTexture->getSize().x;
-		int textureHeight = oTexture->getSize().y;
+		int textureWidth  = m_spTexture->getSize().x;
+		int textureHeight = m_spTexture->getSize().y;
 
 		m_oSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
+		CenterPivot();
+	}
+	void Actor::SetActorLocation(const sf::Vector2f& vNewLocation)
+	{
+		m_oSprite.setPosition( vNewLocation );
+	}
+
+	const sf::Vector2f& Actor::GetActorLocation() const
+	{
+		return m_oSprite.getPosition();
+	}
+
+	void Actor::AddActorLocationLocationOffset(const sf::Vector2f& vOffset)
+	{
+		SetActorLocation( GetActorLocation() + vOffset );
+	}
+
+	
+	void Actor::SetActorRotation(float fNewRotation)
+	{
+		m_oSprite.setRotation(fNewRotation);
+	}
+
+	float Actor::GetActorRotation() const
+	{
+		return m_oSprite.getRotation();
+	}
+
+	void Actor::AddActorLocationRotationOffset( float fOffsetAmmount)
+	{
+		SetActorRotation( GetActorRotation() + fOffsetAmmount );
+	}
+	
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		return RotationToVector( GetActorRotation() );
+	}
+
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector( GetActorRotation() + 90.0f );
 	}
 
 	void Actor::Render(sf::RenderWindow& oWindow)
