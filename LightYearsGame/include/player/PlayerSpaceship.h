@@ -4,7 +4,7 @@
 
 namespace FromHeLL
 {
-	class Player : public Spaceship
+	class PlayerSpaceship : public Spaceship
 	{
 		public :
 		private :
