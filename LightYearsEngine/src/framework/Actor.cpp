@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h" 
+#include "framework/World.h"
 
 namespace FromHeLL
 {
@@ -12,9 +13,10 @@ namespace FromHeLL
 		, m_bHasBaganPlay(false)
 		, m_oSprite{}
 		, m_spTexture{}
+		, m_vScreenSize{}
 	{
 		
-		//SetTexture(sTexturePath);
+		SetTexture( sTexturePath );
 		LOG("Actor Created");
 		
 	}
@@ -36,6 +38,11 @@ namespace FromHeLL
 			m_bHasBaganPlay = true;
 			BeginPlay();
 		}
+	}
+
+	sf::Vector2u Actor::GetWindowSize() const
+	{
+		return m_oOwningWorld->GetWindowSize();
 	}
 
 	void Actor::SetTexture( const String& sTexturePath )
@@ -69,7 +76,7 @@ namespace FromHeLL
 	
 	void Actor::SetActorRotation(float fNewRotation)
 	{
-		m_oSprite.setRotation(fNewRotation);
+		m_oSprite.setRotation( fNewRotation );
 	}
 
 	float Actor::GetActorRotation() const

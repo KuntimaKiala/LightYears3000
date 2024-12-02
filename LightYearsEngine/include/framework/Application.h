@@ -15,6 +15,7 @@ namespace FromHeLL
 			virtual ~Application();
 			virtual void Tick(float fDeltaTime) ;
 			void Run();
+			sf::Vector2u GetWindowSize() const { return m_oWindow.getSize(); }
 
 			template <typename WorldType>
 			weak< WorldType> Loadworld();

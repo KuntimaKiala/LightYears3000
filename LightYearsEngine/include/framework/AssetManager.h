@@ -11,6 +11,7 @@ namespace FromHeLL
 			~AssetManager();
 			static AssetManager& GetAssetManager();
 			shared <sf::Texture> LoadTexture(const String& sPath);
+			void SetAssetRootDirectory( const String& sDirectoryPath );
 			void CleanCycle();
 		protected :
 			AssetManager();
@@ -18,6 +19,7 @@ namespace FromHeLL
 		private :
 			static unique<AssetManager> m_spAssetManager;
 			Dictionary<String, shared<sf::Texture>> m_dLoadedTextureMap;
+			String m_sRootDirectory;
 	};
 
 	// Note :

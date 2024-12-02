@@ -49,13 +49,13 @@ namespace FromHeLL
 		float fAccumulatedTime = 0.0f;
 		float fTargetDeltaTime = 1.0f / m_fTargetFPS;
 
-		while (m_oWindow.isOpen())
+		while ( m_oWindow.isOpen() )
 		{
 
 			sf::Event oWindowEvent;
-			while (m_oWindow.pollEvent(oWindowEvent))
+			while ( m_oWindow.pollEvent(oWindowEvent) )
 			{
-				if (oWindowEvent.type == sf::Event::EventType::Closed)
+				if ( oWindowEvent.type == sf::Event::EventType::Closed )
 				{
 					m_oWindow.close();
 				}
@@ -83,7 +83,7 @@ namespace FromHeLL
 		if (m_spCurrentWorld)
 		{
 			//m_spCurrentWorld->BeginPlayInternal(); called from  weak< WorldType> Application::Loadworld() check header file
-			m_spCurrentWorld->TickInternal(fDeltaTime);
+			m_spCurrentWorld->TickInternal( fDeltaTime );
 		}
 		if ( m_oCleanCycleClock.getElapsedTime().asSeconds() >= m_fCleanCycleInterval )
 		{
@@ -111,7 +111,7 @@ namespace FromHeLL
 		m_oWindow.draw(oRect);*/
 
 		if (m_spCurrentWorld)
-			m_spCurrentWorld->Render(m_oWindow);
+			m_spCurrentWorld->Render( m_oWindow );
 	}
 
 }

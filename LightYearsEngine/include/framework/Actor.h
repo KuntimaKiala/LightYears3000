@@ -9,8 +9,9 @@ namespace FromHeLL
 	class Actor : public Object
 	{
 		public :
-			
-			Actor(World* oOwningWorld, const String& sTexturePath = "");
+			//Actor() : Object(nullptr, "") {} if needed; 
+			Actor() = delete;
+			Actor(World* oOwningWorld, const String& sTexturePath = "SpaceShooterRedux/PNG/playerShip2_red.png" );
 			void BeginPlayInternal();
 			void SetTexture(const String& sTexturePath);
 			void Render(sf::RenderWindow& oWindow);
@@ -23,6 +24,8 @@ namespace FromHeLL
 			float GetActorRotation() const;
 			sf::Vector2f GetActorForwardDirection() const ;
 			sf::Vector2f GetActorRightDirection() const;
+			void SetScreenSize( sf::Vector2<float> vScreenSize ) { m_vScreenSize = vScreenSize; }
+			sf::Vector2u GetWindowSize() const;
 			virtual void BeginPlay();
 			virtual void Tick(float fDeltatime);
 			virtual ~Actor();
@@ -32,6 +35,7 @@ namespace FromHeLL
 			bool m_bHasBaganPlay;
 			sf::Sprite m_oSprite;
 			shared<sf::Texture> m_spTexture;
+			sf::Vector2<float> m_vScreenSize;
 			
 	};
 

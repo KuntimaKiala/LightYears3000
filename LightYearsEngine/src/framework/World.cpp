@@ -1,6 +1,7 @@
 #include "framework/World.h"
 #include "framework/Core.h"
 #include "framework/Actor.h"
+#include "framework/Application.h"
 
 namespace FromHeLL
 {
@@ -10,7 +11,6 @@ namespace FromHeLL
 		,m_bBeganPlay(false)
 		,m_aActors{}
 		,m_aPendingActors{}
-
 	{
 		LOG("World Created");
 	}
@@ -19,6 +19,12 @@ namespace FromHeLL
 	{
 		LOG("World Destroyed");
 	}
+
+	sf::Vector2u World::GetWindowSize() const
+	{
+		return m_pOwningApp->GetWindowSize();
+	}
+
 	void World::BeginPlayInternal()
 	{
 		if (!m_bBeganPlay)

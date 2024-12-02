@@ -15,6 +15,7 @@ namespace FromHeLL
 			void BeginPlayInternal();
 			void TickInternal(float deltaTime);
 			void Render(sf::RenderWindow& oWindow);
+			sf::Vector2u GetWindowSize() const;
 			template<typename ActorType> 
 			weak<ActorType> SpawnActor();
 		

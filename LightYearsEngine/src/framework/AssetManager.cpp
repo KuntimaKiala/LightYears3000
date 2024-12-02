@@ -6,7 +6,9 @@ namespace FromHeLL
 {
 	unique<AssetManager> AssetManager::m_spAssetManager = nullptr;
 	AssetManager::AssetManager()
+		: m_sRootDirectory{}
 	{
+
 	}
 
 	AssetManager::~AssetManager()
@@ -35,7 +37,7 @@ namespace FromHeLL
 		}
 		shared<sf::Texture> newTexture{new sf::Texture};
 
-		if (newTexture->loadFromFile( sPath))
+		if (newTexture->loadFromFile( m_sRootDirectory + sPath))
 		{
 			m_dLoadedTextureMap[sPath] = newTexture;
 			//m_dLoadedTextureMap.insert({ sPath, newTexture });
@@ -44,6 +46,11 @@ namespace FromHeLL
 
 		return shared<sf::Texture> {nullptr};
 	}
+	void AssetManager::SetAssetRootDirectory( const String& sDirectoryPath )
+	{
+		m_sRootDirectory = sDirectoryPath;
+	}
+
 	void AssetManager::CleanCycle()
 	{
 		//auto Dictionary<String, shared<sf::Texture>>::iterator

@@ -6,6 +6,7 @@
 namespace FromHeLL
 {
 	class Actor;
+	class Spaceship;
 	class GameApplication : public Application
 	{
 	public:
@@ -16,8 +17,9 @@ namespace FromHeLL
 		virtual ~GameApplication();
 		
 	private :	
-		weak<Actor> pActor;
-		float fTimer = 0.0f;
+		//weak<Actor> pActor;
+		weak<Spaceship> pActor;
+		float fTimer ;
 
 		
 	};

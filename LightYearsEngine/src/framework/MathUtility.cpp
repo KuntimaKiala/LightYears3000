@@ -3,7 +3,7 @@
 
 namespace FromHeLL
 {
-	const float PI = 3.1415926535;
+	const float PI = 3.14159265358979;
 	sf::Vector2f RotationToVector(float fRotation, bool bDegree /*= true*/)
 	{
 		if ( bDegree )
