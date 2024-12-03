@@ -13,6 +13,7 @@ namespace FromHeLL
 			Spaceship( World* pOwningWorld, const String& sTexturePath = "" );
 			void SetVelocity( sf::Vector2f vNewVelocity );
 			sf::Vector2f GetVelocity() const { return m_vVelocity; }
+			virtual void Shoot() {};
 			virtual void Tick( float fDeltatime ) override;
 			virtual ~Spaceship();
 

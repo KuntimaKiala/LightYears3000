@@ -4,6 +4,7 @@
 
 namespace FromHeLL
 {
+	class BulletShooter;
 	class PlayerSpaceship : public Spaceship
 	{
 		public :
@@ -13,6 +14,7 @@ namespace FromHeLL
 			void SetSPeed( float fNewSpeed ) { m_fSpeed = fNewSpeed; }
 			float GetSpeed() const { return m_fSpeed; }
 			virtual void Tick( float fDeltaTime ) override ;
+			virtual void Shoot() override;
 			virtual ~PlayerSpaceship() = default ;
 		private :
 			void InputHandler();
@@ -21,7 +23,7 @@ namespace FromHeLL
 			void ClampInputOnEgdge();
 			sf::Vector2f m_vMoveInput;
 			float m_fSpeed;
-
+			unique<BulletShooter> m_spShooter;
 		protected :
 	};
 

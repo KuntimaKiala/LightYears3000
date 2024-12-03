@@ -1,6 +1,7 @@
 #include "player/PlayerSpaceship.h"
 #include <SFML/System.hpp>
 #include "framework/MathUtility.h"
+#include "weapon/BulletShooter.h"
 
 namespace FromHeLL
 {
@@ -8,6 +9,8 @@ namespace FromHeLL
 		: Spaceship( pOwningWorld, sTexturePath )
 		, m_vMoveInput{}
 		, m_fSpeed{200.0f}
+		, m_spShooter{ new BulletShooter{ this, 0.3f } }
+
 	{
 	}
 	void PlayerSpaceship::Tick(float fDeltaTime)
@@ -16,6 +19,12 @@ namespace FromHeLL
 		InputHandler();
 		ApplyInput( fDeltaTime );
 	}
+
+	void PlayerSpaceship::Shoot()
+	{
+		if (m_spShooter) m_spShooter->Shoot();
+	}
+
 	void PlayerSpaceship::InputHandler()
 	{
 		
@@ -39,6 +48,10 @@ namespace FromHeLL
 		ClampInputOnEgdge();
 		NormalizeInput();
 		
+		if ( sf::Keyboard::isKeyPressed(sf::Keyboard::Space) )
+		{
+			Shoot();
+		}
 	}
 
 	void PlayerSpaceship::ApplyInput(float fDeltaTime)
@@ -51,8 +64,8 @@ namespace FromHeLL
 	{
 		Normalize( m_vMoveInput );
 		sf::Vector2<float> fPlayerLoc{ GetActorLocation() };
-		LOG("Screen : (%u, %u)", GetWindowSize().x, GetWindowSize().y);
-		LOG("Player Loc : (%f, %f)", fPlayerLoc.x, fPlayerLoc.y);
+		//LOG("Screen : (%u, %u)", GetWindowSize().x, GetWindowSize().y);
+		//LOG("Player Loc : (%f, %f)", fPlayerLoc.x, fPlayerLoc.y);
 	}
 	void PlayerSpaceship::ClampInputOnEgdge()
 	{

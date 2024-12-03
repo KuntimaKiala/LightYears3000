@@ -1,5 +1,4 @@
 #include "framework/Actor.h"
-#include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h" 
 #include "framework/World.h"
@@ -7,16 +6,17 @@
 namespace FromHeLL
 {
 
-	Actor::Actor(World* oOwningWorld, const String& sTexturePath)
+	Actor::Actor( World* oOwningWorld, const String& sTexturePath )
 		: Object() // Not needed since it empty constructer, it will called first regardless
-		, m_oOwningWorld(oOwningWorld)
+		, m_pOwningWorld( oOwningWorld )
+		, m_sTexturePath( sTexturePath )
 		, m_bHasBaganPlay(false)
 		, m_oSprite{}
 		, m_spTexture{}
 		, m_vScreenSize{}
 	{
 		
-		SetTexture( sTexturePath );
+		SetTexture( m_sTexturePath );
 		LOG("Actor Created");
 		
 	}
@@ -42,7 +42,7 @@ namespace FromHeLL
 
 	sf::Vector2u Actor::GetWindowSize() const
 	{
-		return m_oOwningWorld->GetWindowSize();
+		return m_pOwningWorld->GetWindowSize();
 	}
 
 	void Actor::SetTexture( const String& sTexturePath )
@@ -68,7 +68,7 @@ namespace FromHeLL
 		return m_oSprite.getPosition();
 	}
 
-	void Actor::AddActorLocationLocationOffset(const sf::Vector2f& vOffset)
+	void Actor::AddActorLocationOffset(const sf::Vector2f& vOffset)
 	{
 		SetActorLocation( GetActorLocation() + vOffset );
 	}
@@ -81,10 +81,10 @@ namespace FromHeLL
 
 	float Actor::GetActorRotation() const
 	{
-		return m_oSprite.getRotation();
+		return m_oSprite.getRotation() ;
 	}
 
-	void Actor::AddActorLocationRotationOffset( float fOffsetAmmount)
+	void Actor::AddActorRotationOffset( float fOffsetAmmount)
 	{
 		SetActorRotation( GetActorRotation() + fOffsetAmmount );
 	}
@@ -119,7 +119,7 @@ namespace FromHeLL
 		
 	}
 
-	void Actor::Tick(float fDeltatime)
+	void Actor::Tick( float fDeltatime )
 	{
 		
 	}

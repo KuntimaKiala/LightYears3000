@@ -17,7 +17,7 @@ namespace FromHeLL
 	void Spaceship::Tick(float fDeltatime)
 	{
 		Actor::Tick( fDeltatime );
-		AddActorLocationLocationOffset( GetVelocity() * fDeltatime );
+		AddActorLocationOffset( GetVelocity() * fDeltatime );
 	}
 
 	Spaceship::~Spaceship()

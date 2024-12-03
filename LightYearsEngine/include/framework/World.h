@@ -16,8 +16,9 @@ namespace FromHeLL
 			void TickInternal(float deltaTime);
 			void Render(sf::RenderWindow& oWindow);
 			sf::Vector2u GetWindowSize() const;
-			template<typename ActorType> 
-			weak<ActorType> SpawnActor();
+
+			template<typename ActorType, typename... Args> 
+			weak<ActorType> SpawnActor( Args... args );
 		
 
 		private :
@@ -30,11 +31,11 @@ namespace FromHeLL
 			
 	};
 
-	template<typename ActorType>
-	weak<ActorType> World::SpawnActor() 
+	template<typename ActorType, typename... Args>
+	weak<ActorType> World::SpawnActor( Args... args )
 	{
-		shared <ActorType> oNewActor{ new ActorType{ this } };
-		m_aPendingActors.push_back(oNewActor);
+		shared <ActorType> oNewActor{ new ActorType( this, args... ) };
+		m_aPendingActors.push_back( oNewActor );
 		return oNewActor;
 	}
 

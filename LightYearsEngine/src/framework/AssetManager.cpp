@@ -53,6 +53,7 @@ namespace FromHeLL
 
 	void AssetManager::CleanCycle()
 	{
+		return;
 		//auto Dictionary<String, shared<sf::Texture>>::iterator
 		for (auto pIter = m_dLoadedTextureMap.begin(); pIter != m_dLoadedTextureMap.end(); )
 		{

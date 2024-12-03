@@ -42,7 +42,7 @@ namespace FromHeLL
 		pActor.lock()->SetScreenSize( sf::Vector2f( iHeight, iWidth ));
 		pActor.lock()->SetTexture(  "SpaceShooterRedux/PNG/playerShip2_red.png" );
 		pActor.lock()->SetActorLocation( sf::Vector2f( iWidth/2.0f, iHeight/2.0f )) ;
-		
+
 
 		LOG("GameApplication Created");
 		}

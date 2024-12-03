@@ -42,13 +42,7 @@ namespace FromHeLL
 
 	void World::TickInternal( float deltaTime )
 	{
-		for ( shared<Actor> actor : m_aPendingActors )
-		{
-			m_aActors.push_back( actor );
-			actor->BeginPlayInternal();
-		}
-
-	
+		
 		// auto = List<shared<Actor>>::iterator
 		for ( auto iter = m_aActors.begin(); iter != m_aActors.end(); )
 		{
@@ -58,11 +52,17 @@ namespace FromHeLL
 			}
 			else
 			{
-				iter->get()->TickInternal(deltaTime);
+				iter->get()->TickInternal( deltaTime );
 				++iter;
 			}
 		}
-	
+
+		for (shared<Actor> actor : m_aPendingActors )
+		{
+			m_aActors.push_back(actor);
+			actor->BeginPlayInternal();
+		}
+
 		m_aPendingActors.clear();
 		Tick(deltaTime);
 	}

@@ -9,10 +9,10 @@ namespace FromHeLL
 		if ( bDegree )
 		{
 			float fRadians = DegreesToRadians( fRotation );
-			return sf::Vector2f( std::cos( fRadians ) , std ::cos( fRadians ) );
+			return sf::Vector2f( std::cos(fRadians), std::sin( fRadians )  );
 		}
 
-		return sf::Vector2f( std::cos(fRotation), std::cos(fRotation) );
+		return sf::Vector2f( std::cos(fRotation), std::sin(fRotation) );
 	}
 	float DegreesToRadians( float fDegree )
 	{

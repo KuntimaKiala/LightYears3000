@@ -59,6 +59,10 @@ namespace FromHeLL
 				{
 					m_oWindow.close();
 				}
+				else if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Escape ) )
+				{
+					m_oWindow.close();
+				}
 			}
 
 			fAccumulatedTime += m_oClock.restart().asSeconds();
