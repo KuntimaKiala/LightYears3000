@@ -6,9 +6,9 @@
 namespace FromHeLL
 {
 
-	World::World(Application* pOwningApp)
-		:m_pOwningApp(pOwningApp)
-		,m_bBeganPlay(false)
+	World::World( Application* pOwningApp )
+		:m_pOwningApp( pOwningApp )
+		,m_bBeganPlay( false )
 		,m_aActors{}
 		,m_aPendingActors{}
 	{
@@ -34,16 +34,8 @@ namespace FromHeLL
 		}
 	}
 
-	void World::BeginPlay()
+	void World::CleanCycle()
 	{
-
-	}
-
-
-	void World::TickInternal( float deltaTime )
-	{
-		
-		// auto = List<shared<Actor>>::iterator
 		for ( auto iter = m_aActors.begin(); iter != m_aActors.end(); )
 		{
 			if (iter->get()->IsPendingDestroy())
@@ -52,19 +44,38 @@ namespace FromHeLL
 			}
 			else
 			{
-				iter->get()->TickInternal( deltaTime );
 				++iter;
 			}
 		}
 
-		for (shared<Actor> actor : m_aPendingActors )
+	}
+
+	void World::BeginPlay()
+	{
+
+	}
+
+
+	void World::TickInternal( float fDeltaTime )
+	{
+
+		// auto = List<shared<Actor>>::iterator
+		for (shared<Actor> actor : m_aPendingActors)
 		{
 			m_aActors.push_back(actor);
 			actor->BeginPlayInternal();
 		}
 
 		m_aPendingActors.clear();
-		Tick(deltaTime);
+
+		for ( auto iter = m_aActors.begin(); iter != m_aActors.end(); )
+		{
+			iter->get()->TickInternal( fDeltaTime );
+			++iter;
+		}
+
+		
+		Tick( fDeltaTime );
 	}
 
 	void World::Render( sf::RenderWindow& oWindow )
@@ -75,7 +86,7 @@ namespace FromHeLL
 		}
 	}
 
-	void World::Tick(float deltaTime)
+	void World::Tick( float deltaTime )
 	{
 
 	}

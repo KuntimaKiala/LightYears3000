@@ -26,11 +26,14 @@ namespace FromHeLL
 			float GetActorRotation() const;
 			sf::Vector2f GetActorForwardDirection() const ;
 			sf::Vector2f GetActorRightDirection() const;
+			sf::FloatRect GetActorGlobalBounds() const;
 			void SetScreenSize( sf::Vector2<float> vScreenSize ) { m_vScreenSize = vScreenSize; }
 			sf::Vector2u GetWindowSize() const;
 			virtual void BeginPlay();
 			virtual void Tick(float fDeltatime)  ;
 			
+			bool IsActorOutOfWIndowBounds() const;
+
 		private :
 			void CenterPivot();
 			World* m_pOwningWorld;

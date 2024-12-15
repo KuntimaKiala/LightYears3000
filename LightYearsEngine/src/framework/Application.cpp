@@ -42,7 +42,6 @@ namespace FromHeLL
 
 	}
 
-
 	void Application::Run()
 	{
 		m_oClock.restart();
@@ -76,15 +75,11 @@ namespace FromHeLL
 		}
 	}
 
-
-
-	
-
 	void Application::TickInternal(float fDeltaTime) 
 	{
 		Tick(fDeltaTime);
 
-		if (m_spCurrentWorld)
+		if ( m_spCurrentWorld )
 		{
 			//m_spCurrentWorld->BeginPlayInternal(); called from  weak< WorldType> Application::Loadworld() check header file
 			m_spCurrentWorld->TickInternal( fDeltaTime );
@@ -93,6 +88,10 @@ namespace FromHeLL
 		{
 			m_oCleanCycleClock.restart();
 			AssetManager::GetAssetManager().CleanCycle() ;
+			if ( m_spCurrentWorld )
+			{
+				m_spCurrentWorld->CleanCycle();
+			}
 		}
 	}
 	void Application::RenderInternal() 

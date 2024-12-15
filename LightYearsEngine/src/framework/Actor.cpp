@@ -99,6 +99,11 @@ namespace FromHeLL
 		return RotationToVector( GetActorRotation() + 90.0f );
 	}
 
+	sf::FloatRect Actor::GetActorGlobalBounds() const
+	{
+		return m_oSprite.getGlobalBounds();
+	}
+
 	void Actor::Render(sf::RenderWindow& oWindow)
 	{
 		if ( IsPendingDestroy() )
@@ -122,5 +127,35 @@ namespace FromHeLL
 	void Actor::Tick( float fDeltatime )
 	{
 		
+	}
+	bool Actor::IsActorOutOfWIndowBounds() const
+	{
+		float fWindowWidth  = GetWorld()->GetWindowSize().x;
+		float fWindowHeight = GetWorld()->GetWindowSize().y;
+		
+		float fActorWidth = GetActorGlobalBounds().width;
+		float fActorHeight = GetActorGlobalBounds().height;
+		sf::Vector2f fActorPosition = GetActorLocation();
+
+		if ( fActorPosition.x < - fActorWidth )
+		{
+			return true;
+		}
+		else if ( fActorPosition.x > fWindowWidth + fActorWidth )
+		{
+			return true;
+		}
+		else if ( fActorPosition.y < -fActorHeight )
+		{
+			return true;
+		}
+		
+		else if ( fActorPosition.x > fWindowHeight + fActorHeight )
+		{
+			return true;
+		}
+
+		return false;
+
 	}
 }

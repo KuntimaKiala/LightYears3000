@@ -13,13 +13,13 @@ namespace FromHeLL
 			World(Application* pOwningApp);
 			virtual ~World();
 			void BeginPlayInternal();
-			void TickInternal(float deltaTime);
+			void TickInternal( float fDeltaTime );
 			void Render(sf::RenderWindow& oWindow);
 			sf::Vector2u GetWindowSize() const;
 
 			template<typename ActorType, typename... Args> 
 			weak<ActorType> SpawnActor( Args... args );
-		
+			void CleanCycle();
 
 		private :
 			void BeginPlay();

@@ -28,7 +28,7 @@ namespace FromHeLL
 			
 
 
- 			weak<Bullet> spNewBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(  GetOwner(), "SpaceShooterRedux/PNG/Lasers/laserBlue06.png" );
+ 			weak<Bullet> spNewBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(  GetOwner(), "SpaceShooterRedux/PNG/Lasers/laserRed11.png" );
 			spNewBullet.lock()->SetActorRotation( 0.0f );
 
 			spNewBullet.lock()->SetActorRotation( GetOwner()->GetActorRotation() );

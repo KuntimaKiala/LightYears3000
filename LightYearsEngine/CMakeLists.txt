@@ -19,6 +19,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
              ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/AssetManager.h
              ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/AssetManager.cpp
 
+             ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
+             ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
+
              ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
              ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
 
@@ -34,6 +37,17 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
 
 target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+include(FetchContent)
+set(SFML_LIB_NAME SFML)
+
+FetchContent_Declare(
+    ${SFML_LIB_NAME}
+    GIT_REPOSITORY https://github.com/SFML/SFML
+    GIT_TAG 2.5.1
+    GIT_SHALLOW FALSE
+)
+
+FetchContent_MakeAvailable(${SFML_LIB_NAME})
 
 # Linking the Libraries to our project
 target_link_libraries( ${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-graphics )
@@ -41,8 +55,19 @@ target_link_libraries( ${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-window   )
 target_link_libraries( ${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-system   )
 target_link_libraries( ${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-audio    )
 
-function(CopyLibToTarget LIB_NAME TARGET_NAME )
+set(BOX2D_LIB_NAME Box2D)
+FetchContent_Declare(
+    ${BOX2D_LIB_NAME}
+    GIT_REPOSITORY https://github.com/erincatto/box2d
+    GIT_TAG v2.4.1
+    GIT_SHALLOW FALSE
+)
 
+FetchContent_MakeAvailable(${BOX2D_LIB_NAME})
+target_link_libraries( ${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC box2d    )
+
+
+function(CopyLibToTarget LIB_NAME TARGET_NAME )
 add_custom_command(
     TARGET ${TARGET_NAME} 
     POST_BUILD 
@@ -58,6 +83,7 @@ CopyLibToTarget( sfml-graphics ${LIGHT_YEARS_ENGINE_TARGET_NAME})
 CopyLibToTarget( sfml-window ${LIGHT_YEARS_ENGINE_TARGET_NAME})
 CopyLibToTarget( sfml-system ${LIGHT_YEARS_ENGINE_TARGET_NAME})
 CopyLibToTarget( sfml-audio ${LIGHT_YEARS_ENGINE_TARGET_NAME})
+CopyLibToTarget( box2d ${LIGHT_YEARS_ENGINE_TARGET_NAME})
 
 # add custom command exemple
 #add_custom_command
@@ -69,3 +95,4 @@ CopyLibToTarget( sfml-audio ${LIGHT_YEARS_ENGINE_TARGET_NAME})
 #    $<TARGET_FILE:sfml-graphics> #the generator build files for (sfml-graphics/sfml-window/sfml-system/sfml-audio/...etc)
 #    $<TARGET_FILE_DIR:${LIGHT_YEARS_GAME_TARGET_NAME}> # to where the executable is [somehow  $<TARGET_FILE_DIR:${LIGHT_YEARS_GAME_TARGET_NAME}> become a path]
 #)
+#

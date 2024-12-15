@@ -15,10 +15,14 @@ namespace FromHeLL
 	{
 		Actor::Tick( fDeltaTime );
 		Move( fDeltaTime );
+		if ( IsActorOutOfWIndowBounds() )
+		{
+			Destroy();
+		}
 	}
 	void Bullet::Move( float fDeltaTime )
 	{
-		sf::Vector2f f = GetActorForwardDirection();
-		AddActorLocationOffset(sf::Vector2f(f.y, -f.x ) * m_fSpeed * fDeltaTime );
+		SetActorRotation( 270.0f ); 
+		AddActorLocationOffset( GetActorForwardDirection() * m_fSpeed * fDeltaTime );
 	}
 }
