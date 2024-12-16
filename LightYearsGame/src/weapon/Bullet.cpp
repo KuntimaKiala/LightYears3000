@@ -20,6 +20,13 @@ namespace FromHeLL
 			Destroy();
 		}
 	}
+
+	void Bullet::BeginPlay()
+	{
+		Actor::BeginPlay();
+		SetEnablePhysics( true );
+	}
+
 	void Bullet::Move( float fDeltaTime )
 	{
 		//SetActorRotation( 270.0f ); 

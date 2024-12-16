@@ -9,7 +9,6 @@ namespace FromHeLL
 
 	}
 
-
 	void Shooter::Shoot()
 	{
 		if ( CanShoot() && !IsOnCooldown() )

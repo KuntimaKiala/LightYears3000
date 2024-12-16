@@ -5,6 +5,7 @@
 #include <map>
 #include <unordered_map>
 #include "framework/MathUtility.h"
+#include <unordered_set>
 
 namespace FromHeLL
 {
@@ -26,6 +27,9 @@ namespace FromHeLL
 
   template <typename keyType, typename valueType, typename Hasher = std::hash<keyType>>
   using Dictionary = std::unordered_map<keyType, valueType, Hasher>;
+
+  template <typename T>
+  using Set = std::unordered_set<T>;
 
   typedef std::string String;
   #define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)

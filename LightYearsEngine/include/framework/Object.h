@@ -7,7 +7,7 @@ namespace FromHeLL
 		public :
 			Object();
 			virtual ~Object();
-			void Destroy();
+			virtual void Destroy();
 			bool IsPendingDestroy() const { return m_bIsPendingDestroy; }
 		private :
 			bool m_bIsPendingDestroy;

@@ -3,6 +3,7 @@
 #include "framework/Core.h"
 #include <SFML/Graphics.hpp>
 
+class b2Body;
 namespace FromHeLL
 {
 	class World;
@@ -33,16 +34,24 @@ namespace FromHeLL
 			virtual void Tick( float fDeltatime )  ;
 			
 			bool IsActorOutOfWIndowBounds() const;
-
+			void SetEnablePhysics(bool bEnable );
+			virtual void OnActorBeginOverLap( Actor* pOtherActor );
+			virtual void OnActorEndOverLap( Actor* pOtherActor);
+			virtual void Destroy() override ;
 		private :
 			void CenterPivot();
+			void InitiaizePhysics();
+			void UnInitiaizePhysics();
+			void UpdatePhysicsBodyTransform();
+
 			World* m_pOwningWorld;
 			const String& m_sTexturePath;
 			bool m_bHasBaganPlay;
 			sf::Sprite m_oSprite;
 			shared<sf::Texture> m_spTexture;
 			sf::Vector2<float> m_vScreenSize;
-			
+			b2Body* m_pPhysicBody;
+			bool m_bPhysicEnabled;
 	};
 
 

@@ -20,6 +20,12 @@ namespace FromHeLL
 		AddActorLocationOffset( GetVelocity() * fDeltatime );
 	}
 
+	void Spaceship::BeginPlay()
+	{
+		Actor::BeginPlay();
+		SetEnablePhysics( true );
+	}
+
 	Spaceship::~Spaceship()
 	{
 	}

@@ -15,6 +15,7 @@ namespace FromHeLL
 			sf::Vector2f GetVelocity() const { return m_vVelocity; }
 			virtual void Shoot() {};
 			virtual void Tick( float fDeltatime ) override;
+			virtual void BeginPlay() override;
 			virtual ~Spaceship();
 
 		private :

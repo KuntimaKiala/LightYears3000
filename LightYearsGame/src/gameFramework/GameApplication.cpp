@@ -44,25 +44,29 @@ namespace FromHeLL
 		pActor.lock()->SetActorLocation( sf::Vector2f( iWidth/2.0f, iHeight/2.0f )) ;
 
 
-		LOG("GameApplication Created");
+		weak<Spaceship> spSpaceShipTest = oNewWorld.lock()->SpawnActor<Spaceship>();
+		spSpaceShipTest.lock()->SetScreenSize(sf::Vector2f(iHeight, iWidth));
+		spSpaceShipTest.lock()->SetTexture( "SpaceShooterRedux/PNG/playerShip2_red.png" );
+		spSpaceShipTest.lock()->SetActorLocation(sf::Vector2f{ 100.0f, 50.0f });
+		
 		}
 
 
 	GameApplication::~GameApplication()
 	{
-		LOG( "GameApplication Destroyed" );
+		
 	}
 
 	void GameApplication::Tick(float fDeltaTime) 
 	{
-		/*fTimer += fDeltaTime;
-		if (fTimer > 2.0f)
+		fTimer += fDeltaTime;
+		if (fTimer > 10.0f)
 		{
 			if (!pActor.expired())
 			{
 				pActor.lock()->Destroy();
 			}
-		}*/
+		}
 	}
 	
 }

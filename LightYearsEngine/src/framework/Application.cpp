@@ -16,7 +16,7 @@ namespace FromHeLL
 		, m_fCleanCycleInterval{2.0f}
 		, m_oCleanCycleClock{}
 	{
-		LOG("Application Created");
+		
 	}
 
 	Application::Application(int iWidth, int iHeight, const std::string& sWindowName, sf::Uint32 uStyle, float fFrameRate)
@@ -30,12 +30,12 @@ namespace FromHeLL
 		, m_oCleanCycleClock{}
 	
 	{
-		LOG("Application Created");
+		
 	}
 
 	Application::~Application()
 	{
-		LOG("Application Destroyed");
+		
 	}
 
 	void Application::Tick(float fDeltaTime)

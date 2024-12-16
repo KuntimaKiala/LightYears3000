@@ -12,12 +12,12 @@ namespace FromHeLL
 		,m_aActors{}
 		,m_aPendingActors{}
 	{
-		LOG("World Created");
+		
 	}
 
 	World::~World()
 	{
-		LOG("World Destroyed");
+		
 	}
 
 	sf::Vector2u World::GetWindowSize() const
