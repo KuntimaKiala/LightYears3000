@@ -10,11 +10,11 @@ namespace FromHeLL
 	class World
 	{
 		public :
-			World(Application* pOwningApp);
+			World( Application* pOwningApp );
 			virtual ~World();
 			void BeginPlayInternal();
 			void TickInternal( float fDeltaTime );
-			void Render(sf::RenderWindow& oWindow);
+			void Render( sf::RenderWindow& oWindow );
 			sf::Vector2u GetWindowSize() const;
 
 			template<typename ActorType, typename... Args> 
@@ -23,7 +23,7 @@ namespace FromHeLL
 
 		private :
 			void BeginPlay();
-			void Tick(float deltaTime);
+			void Tick( float deltaTime );
 			Application* m_pOwningApp;
 			bool m_bBeganPlay;
 			List <shared<Actor>> m_aActors;

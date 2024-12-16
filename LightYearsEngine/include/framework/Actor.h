@@ -15,9 +15,9 @@ namespace FromHeLL
 			virtual ~Actor();
 			World* GetWorld() const { return m_pOwningWorld;  }
 			void BeginPlayInternal();
-			void SetTexture(const String& sTexturePath);
-			void Render(sf::RenderWindow& oWindow);
-			void TickInternal(float fDeltaTime);
+			void SetTexture( const String& sTexturePath);
+			void Render( sf::RenderWindow& oWindow );
+			void TickInternal( float fDeltaTime );
 			void SetActorLocation( const sf::Vector2f& vNewLocation );
 			void SetActorRotation( float fNewRotation);
 			void AddActorLocationOffset( const sf::Vector2f& vOffset );
@@ -30,7 +30,7 @@ namespace FromHeLL
 			void SetScreenSize( sf::Vector2<float> vScreenSize ) { m_vScreenSize = vScreenSize; }
 			sf::Vector2u GetWindowSize() const;
 			virtual void BeginPlay();
-			virtual void Tick(float fDeltatime)  ;
+			virtual void Tick( float fDeltatime )  ;
 			
 			bool IsActorOutOfWIndowBounds() const;
 

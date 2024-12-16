@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/World.h"
 #include "framework/AssetManager.h"
+#include "framework/PhysicsSystem.h"
 
 namespace FromHeLL
 {
@@ -84,6 +85,10 @@ namespace FromHeLL
 			//m_spCurrentWorld->BeginPlayInternal(); called from  weak< WorldType> Application::Loadworld() check header file
 			m_spCurrentWorld->TickInternal( fDeltaTime );
 		}
+
+		// TODO : create tick for PhysicsSystem Instead
+		PhysicsSystem::Get().Step( fDeltaTime );
+
 		if ( m_oCleanCycleClock.getElapsedTime().asSeconds() >= m_fCleanCycleInterval )
 		{
 			m_oCleanCycleClock.restart();

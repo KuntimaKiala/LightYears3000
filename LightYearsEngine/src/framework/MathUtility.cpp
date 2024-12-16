@@ -3,16 +3,16 @@
 
 namespace FromHeLL
 {
-	const float PI = 3.14159265358979;
+	const float PI = 3.14159265358979f;
 	sf::Vector2f RotationToVector(float fRotation, bool bDegree /*= true*/)
 	{
 		if ( bDegree )
 		{
 			float fRadians = DegreesToRadians( fRotation );
-			return sf::Vector2f( std::cos(fRadians), std::sin( fRadians )  );
+			return sf::Vector2f( std::cos( fRadians ), std::sin( fRadians )  );
 		}
 
-		return sf::Vector2f( std::cos(fRotation), std::sin(fRotation) );
+		return sf::Vector2f( std::cos( fRotation ), std::sin( fRotation ) );
 	}
 	float DegreesToRadians( float fDegree )
 	{

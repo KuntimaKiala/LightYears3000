@@ -4,7 +4,7 @@
 namespace FromHeLL
 {
 	Object::Object()
-		: m_bIsPendingDestroy{false}
+		: m_bIsPendingDestroy{ false }
 	{
 		LOG("Object Created");
 	}

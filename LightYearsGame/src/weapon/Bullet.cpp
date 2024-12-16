@@ -22,7 +22,7 @@ namespace FromHeLL
 	}
 	void Bullet::Move( float fDeltaTime )
 	{
-		SetActorRotation( 270.0f ); 
+		//SetActorRotation( 270.0f ); 
 		AddActorLocationOffset( GetActorForwardDirection() * m_fSpeed * fDeltaTime );
 	}
 }

@@ -27,13 +27,12 @@ namespace FromHeLL
 			m_oCooldownClock.restart();
 			
 
-
- 			weak<Bullet> spNewBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(  GetOwner(), "SpaceShooterRedux/PNG/Lasers/laserRed11.png" );
+			Actor* pActor = GetOwner();
+ 			weak<Bullet> spNewBullet = pActor->GetWorld()->SpawnActor<Bullet>( pActor, "SpaceShooterRedux/PNG/Lasers/laserRed11.png" );
 			spNewBullet.lock()->SetActorRotation( 0.0f );
 
-			spNewBullet.lock()->SetActorRotation( GetOwner()->GetActorRotation() );
-			spNewBullet.lock()->SetActorLocation( GetOwner()->GetActorLocation() );
-			//spNewBullet.lock()->SetActorRotation( GetOwner()->GetActorRotation() + 50.0f);
+			spNewBullet.lock()->SetActorLocation( pActor->GetActorLocation() );
+		    spNewBullet.lock()->SetActorRotation( pActor->GetActorRotation() + 270.0f );
 		}
 	
 }

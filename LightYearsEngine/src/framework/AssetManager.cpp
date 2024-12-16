@@ -22,7 +22,8 @@ namespace FromHeLL
 			// unique<AssetManager> and  std::make_unique<AssetManager>()  would work
 			// but we want unique pointer, meaning heap data allocation
 			// so unique<AssetManager>{new AssetManager}
-			m_spAssetManager = std::move(unique<AssetManager>{new AssetManager}); 
+			//std::unique_ptr<AssetManager>(new AssetManager());
+			m_spAssetManager = std::move( unique< AssetManager >{ new AssetManager } );
 		}
 
 		return *m_spAssetManager;
