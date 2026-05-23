@@ -2,5 +2,5 @@
 
 int main()
 {
-	std::cout << "" << std::endl;
+	std::cout << "Entry Point" << std::endl;
 }
