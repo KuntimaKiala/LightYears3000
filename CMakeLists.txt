@@ -18,7 +18,7 @@ include(FetchContent)
 set(SFML_LIB_NAME SFML)
 
 # to force generating dll files (shared) 
-set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+#set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE) #not needed anymore
 
 
 # Where, how and what to download
@@ -35,8 +35,11 @@ FetchContent_MakeAvailable( ${SFML_LIB_NAME} )
 # PS: Downloading does not link it 
 
 # creates a variable, the linking happens also there
+set(LIGHT_YEARS_ENGINE_TARGET_NAME LightYearsEngine)
 set(LIGHT_YEARS_GAME_TARGET_NAME LightYearsGame)
 
 # Look and enter the folder LightYears relative to the current folder containing this file, read its CMakeLists and include whatever is there
-add_subdirectory(LightYears)
+add_subdirectory(LightYearsEngine)
+add_subdirectory(LightYearsGame)
+# PS: Must Link the fetched content
 
